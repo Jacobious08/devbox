@@ -1,5 +1,6 @@
 # Installing k3s
 
+```bash
 ### Update package list and install tools
 
 sudo apt update && sudo apt upgrade -y
