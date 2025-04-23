@@ -1,4 +1,4 @@
-# -*- mode: ruby -*-
+# -*- mode: ruby -*# -*- mode: ruby -*-
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
@@ -19,5 +19,11 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt update && sudo apt upgrade -y
     sudo apt install -y build-essential curl git
+    sudo apt install -y curl wget vim
+    curl -sfL https://get.k3s.io | sh -
+    mkdir -p ~/.kube
+    sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+    sudo chown $(id -u):$(id -g) ~/.kube/config
+    export KUBECONFIG=~/.kube/config
   SHELL
 end
